@@ -1,0 +1,5 @@
+To Login:
+Input your provided Username and Password and click "Log In".
+
+To Reset Password:
+Click "Forgot Password" and input your provided reset information.
