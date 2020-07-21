@@ -1,0 +1,5 @@
+To Take Attendance:
+Click "Take Attendance", then click whether the respective student is there or not.
+
+To View Old Attendance:
+Click "View Old Attendance", Select a date and click view attendance.

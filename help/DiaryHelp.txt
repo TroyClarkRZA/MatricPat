@@ -1,0 +1,7 @@
+To Create New Entry:
+Enter The Entry Title Into "Your Event Title"
+Enter The Content Of Your Event into "Content"
+Then Click "Add This Entry"
+
+To View Past Entries:
+Click "View Past Entries"

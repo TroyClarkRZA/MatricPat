@@ -1,0 +1,4 @@
+To Delete A User:
+Click Delete A User, View The List Of Users In The Top Of The Screen
+Match The Spinner To The UserID Of The User You Want To Delete
+Then Follow The On-Screen Prompts

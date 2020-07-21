@@ -7,6 +7,7 @@ package GUI;
 
 import CODE.Backend;
 import CODE.ArrayHandler;
+import CODE.Help;
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -158,6 +159,33 @@ public class AdminGUI extends javax.swing.JFrame {
         ViewEventsGUI  veGUI = new ViewEventsGUI();
         veGUI.setVisible(true);
     }
+    public void helpFunctions(int choice){
+        Help help = new Help();
+        switch(choice){
+            case 0:
+                help.helpFunction("Attendance.txt");
+                break;
+            case 1:
+                help.helpFunction("Events.txt");
+                break;
+            case 2:
+                help.helpFunction("DisplayAdmins.txt");
+                break;
+            case 3:
+                help.helpFunction("CreateNewUser.txt");
+                break;
+            case 4:
+                help.helpFunction("DeleteUser.txt");
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane, "ERROR IN SWITCH");
+            
+            
+            
+            
+            
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,13 +233,12 @@ public class AdminGUI extends javax.swing.JFrame {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem6 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -406,25 +433,47 @@ public class AdminGUI extends javax.swing.JFrame {
 
         jMenu4.setText("Help");
 
-        jCheckBoxMenuItem1.setText("Attendendance");
-        jMenu4.add(jCheckBoxMenuItem1);
+        jMenuItem4.setText("Attendance");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
 
-        jCheckBoxMenuItem2.setText("Events");
-        jMenu4.add(jCheckBoxMenuItem2);
+        jMenuItem5.setText("Events");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
 
         jMenu3.setText("Admin Configuration");
 
-        jCheckBoxMenuItem3.setText("Display Current Admins");
-        jMenu3.add(jCheckBoxMenuItem3);
+        jMenuItem6.setText("Display Current Admins");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
 
-        jCheckBoxMenuItem4.setText("Create New User");
-        jMenu3.add(jCheckBoxMenuItem4);
+        jMenuItem7.setText("Create New User");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
 
-        jCheckBoxMenuItem6.setText("Delete A User");
-        jMenu3.add(jCheckBoxMenuItem6);
-
-        jCheckBoxMenuItem5.setText("Edit A Users Details");
-        jMenu3.add(jCheckBoxMenuItem5);
+        jMenuItem8.setText("Delete A User");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
 
         jMenu4.add(jMenu3);
 
@@ -491,6 +540,26 @@ public class AdminGUI extends javax.swing.JFrame {
         viewEvents();
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        helpFunctions(0);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        helpFunctions(1);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        helpFunctions(2);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        helpFunctions(3);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        helpFunctions(4);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -536,12 +605,6 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem6;
     private javax.swing.JLabel jEventTitle;
     private javax.swing.JLabel jEventTitle2;
     private javax.swing.JLabel jLabel2;
@@ -558,6 +621,11 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

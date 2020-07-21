@@ -77,7 +77,7 @@ public class createNewUser extends javax.swing.JFrame {
             String sDay = oAtnd.convertDayToString(day);
             String actualDate = String.valueOf(sYear + "-" + sMonth + "-" + sDay);
             
-            arrH.createNewUser(arrH.userCount + 1, jFName.getText(), jLName.getText(), jUsername.getText(), jPassword.getText(), actualDate, jAdminButt.isSelected(), jMothersM.getText());
+            arrH.createNewUser(arrH.userCount , jFName.getText(), jLName.getText(), jUsername.getText(), jPassword.getText(), actualDate, jAdminButt.isSelected(), jMothersM.getText());
             
             this.setVisible(false);
         }

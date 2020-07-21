@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.RootPaneUI;
 
 /**
  *
@@ -41,8 +42,10 @@ public class ArrayHandler {
             stMan = new StorageManager("AjendaDB.accdb");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "CLASS NOT FOUND EXCEPTION");
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
     }
 
@@ -70,8 +73,10 @@ public class ArrayHandler {
 
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         } catch (NullPointerException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Broke Out Of For Loop Due To NullPointer, This Is Normal And Not An Error.");
 
         }
     }
@@ -94,6 +99,7 @@ public class ArrayHandler {
 
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
     }
 
@@ -115,6 +121,7 @@ public class ArrayHandler {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
 
     }
@@ -149,6 +156,7 @@ public class ArrayHandler {
             System.out.println("--------------------------");
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
     }
 
@@ -171,7 +179,7 @@ public class ArrayHandler {
 
             return output;
         } catch (SQLException ex) {
-
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
         return output;
 
@@ -196,6 +204,7 @@ public class ArrayHandler {
             System.out.println("--------------------------");
         } catch (SQLException ex) {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error In Database");
         }
     }
 
@@ -213,7 +222,7 @@ public class ArrayHandler {
 
     public String getEvent(String actualDate) {
         String sMandatory = "";
-        String output = "";
+        String output = "THERE ARE NO EVENTS FOR THIS DATE";
         try {
             ResultSet eventSet = stMan.query("SELECT * FROM tblCalendar WHERE DTEvent = '" + actualDate + "';");
             while (eventSet.next()) {
@@ -229,7 +238,9 @@ public class ArrayHandler {
                 }
                 output = Title + "\n" + Date + "\n" + sMandatory + "\n\n---------------------------\n" + Details;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Error in Database");
         }
         return output;
 
@@ -252,6 +263,7 @@ public class ArrayHandler {
                     eventCount++;
 
                 } catch (NullPointerException e) {
+                    System.out.println("Broke Out Of For Loop Due To A NullPointer, This Is Normal And Not An Error.");
                     break;
                 }
 
@@ -310,6 +322,7 @@ public class ArrayHandler {
                 i++;
 
             } catch (Exception e) {
+                System.out.println("Broke Out Of For Loop Due To NullPointer, This Is Normal And Not An Error.");
                 break;
             }
         }

@@ -1,0 +1,6 @@
+To Create New Event:
+Enter Event Title into "Event Title", Optionally - Enter Event Details into "Event Details(Optional)"
+Select date and time under "Choose Date And Time", and choose whether the submission is cumpulsory or not.
+
+To View Current Events:
+Click "View Events" and scroll through the list.
