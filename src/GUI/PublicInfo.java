@@ -9,7 +9,7 @@ import CODE.ArrayHandler;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class PublicInfo extends javax.swing.JFrame {
 
@@ -21,7 +21,7 @@ public class PublicInfo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setInfo();
     }
-
+    //retrieves the info of the current user
     public void setInfo() {
         ArrayHandler arrH = new ArrayHandler();
         FName.setText(arrH.cUser.getFName());

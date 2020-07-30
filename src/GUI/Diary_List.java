@@ -9,7 +9,6 @@ import CODE.Attendance;
 import CODE.Users;
 import CODE.ArrayHandler;
 import CODE.StorageManager;
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +19,7 @@ import java.util.logging.Level;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Diary_List extends javax.swing.JFrame {
 
@@ -41,11 +40,11 @@ public class Diary_List extends javax.swing.JFrame {
         addRowToJTable();
         setLocationRelativeTo(null);
     }
-
+    //method returns the date passed to it from other classes
     public int getDateData(int Date) {
         return Date;
     }
-
+    //adds row to jTable in the same manner as Attend_List
     public void addRowToJTable() {
         jName.setText(arrH.cUser.getFName() + " " + arrH.cUser.getLName());
         model = (DefaultTableModel) jTable2.getModel();

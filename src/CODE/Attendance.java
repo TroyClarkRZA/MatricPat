@@ -7,17 +7,17 @@ package CODE;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Attendance {
-
     private int UserID, Grade;
     private boolean Present;
     private String Date;
-
+    
+    //default constructor 
     public Attendance() {
     }
-
+    //getters for Attendance object
     public int getUserID() {
         return UserID;
     }
@@ -33,7 +33,7 @@ public class Attendance {
     public int getGrade() {
         return Grade;
     }
-
+    //setters for Attendance object
     public void setUserID(int UserID) {
         this.UserID = UserID;
     }
@@ -49,7 +49,8 @@ public class Attendance {
     public void setGrade(int Grade) {
         this.Grade = Grade;
     }
-
+    
+    //toString for Attendance object
     @Override
     public String toString() {
         return "UserID =" + UserID + " is Present = " + Present + " for Date =" + Date;

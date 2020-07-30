@@ -10,7 +10,7 @@ import CODE.ArrayHandler;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Calendar extends javax.swing.JFrame {
 
@@ -21,7 +21,7 @@ public class Calendar extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    //method retrieves events
     public void getEvent() {
         ArrayHandler arrH = new ArrayHandler();
         AdminGUI aGUI = new AdminGUI();

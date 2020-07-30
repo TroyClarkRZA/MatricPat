@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author troy
+ * @author Troy Clark
  */
 public class StudentGUI extends javax.swing.JFrame {
     // Student_Submit_Abesence StudentSub = new Student_Submit_Abesence();
@@ -23,7 +23,7 @@ public class StudentGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    //switch case detects which button is chosen and displays the appropriate text file
     public void helpFunc(int ID) {
         Help help = new Help();
         switch (ID) {
@@ -40,9 +40,9 @@ public class StudentGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "ERROR IN HELP FUNCTION");
         }
     }
-
+    //all of these methods only open particular GUIs
     public void backLogIn() {
-        Main logIn = new Main();
+        MainGUI logIn = new MainGUI();
         this.setVisible(false);
         logIn.setVisible(true);
     }

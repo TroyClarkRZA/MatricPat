@@ -7,7 +7,7 @@ package GUI;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Event_Date_Selection extends javax.swing.JFrame {
 
@@ -20,7 +20,7 @@ public class Event_Date_Selection extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    //retrieves the date of the selected date component
     public void pullDate() {
         OldAttend oAtnd = new OldAttend();
         int year = oAtnd.convertYear(jCalendar1.getDate().getYear());

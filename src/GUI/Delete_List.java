@@ -9,7 +9,6 @@ import CODE.Attendance;
 import CODE.Users;
 import CODE.ArrayHandler;
 import CODE.StorageManager;
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +19,7 @@ import java.util.logging.Level;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Delete_List extends javax.swing.JFrame {
 
@@ -43,7 +42,7 @@ public class Delete_List extends javax.swing.JFrame {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //method adds rows to JTable in the same manner of the Attend_List Class
     public void addRowToJTable() {
         ArrayHandler arrH = new ArrayHandler();
         arrH.populateUsers();
@@ -65,27 +64,33 @@ public class Delete_List extends javax.swing.JFrame {
             }
 
         }
-    }
-
+    }   
+    //method confirms the deletion of a User object from the database
     public void confirmDelete() {
         boolean valid = true;
         ArrayHandler arrH = new ArrayHandler();
+        //validates data 
         if (jUserSpinner.getValue() < 0) {
             jUserIDError.setText("UserID cannot be < 0");
             valid = false;
         } else if (jTextArea1.getText().length() < 5) {
             jReasonError.setText("Reason of atleast 5 characters is required");
             valid = false;
+        //simple check to see if the current user is trying to delete their own account 
         } else if (jUserSpinner.getValue() == arrH.cUser.getUserID()) {
-            String conf = JOptionPane.showInputDialog(null, "DANGER, You are about to delete your own account \n \n type Y/N?");
+            try {
+                String conf = JOptionPane.showInputDialog(null, "DANGER, You are about to delete your own account \n \n type Y/N?");
             if (conf.equalsIgnoreCase("Y")) {
                 arrH.deleteUser(jUserSpinner.getValue(), jTextArea1.getText());
             }else if(!conf.equalsIgnoreCase("Y")){
                 valid = false;
                 JOptionPane.showMessageDialog(null, "-----ABORTED----- \n Your Account Has NOT Been Deleted");
             }
-            
-        } else if (valid = true) {
+            } catch (Exception e) {
+                System.out.println("-----ABORTED----- \n Your Account Has NOT Been Deleted");
+            }
+            //if valid is true then the user is deleted.
+        } else if (valid == true) {
             arrH.deleteUser(jUserSpinner.getValue(), jTextArea1.getText());
             addRowToJTable();
             jTextArea1.setText("");

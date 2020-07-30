@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author troy
+ * @author Troy Clark
  */
 public class AdminGUI extends javax.swing.JFrame {
 
@@ -30,7 +30,7 @@ public class AdminGUI extends javax.swing.JFrame {
     /**
      * Creates new form AdminGUI
      */
-    public AdminGUI() {
+    public AdminGUI() { //constructor for AdminGUI, initializes components and runs the appropriate methods to set the value of jlables to display meaningful data
         initComponents();
         setLocationRelativeTo(null);
         timeCheck();
@@ -38,132 +38,126 @@ public class AdminGUI extends javax.swing.JFrame {
     }
 
     public void ChangeUser() {
-        ArrayHandler arrH = new ArrayHandler();
-        Backend LgHand = new Backend();
-        arrH.populateUsers();
-        String Username = JOptionPane.showInputDialog("Please insert username of the account you'd like to swap to");
-        String Password = JOptionPane.showInputDialog("Please Insert Password Of Account You Want To Log Into");
-        boolean check = LgHand.LogInCheck(Username, Password);
-        boolean adminCheck = LgHand.AdminAuth;
-        if (Username.equals("") || Password.equals("")) {
+        ArrayHandler arrH = new ArrayHandler(); //instance variable for ArrayHandler
+        Backend LgHand = new Backend(); //instance variable for Backend
+        arrH.populateUsers(); //populating the user array
+        String Username = JOptionPane.showInputDialog("Please insert username of the account you'd like to swap to"); //input for username
+        String Password = JOptionPane.showInputDialog("Please Insert Password Of Account You Want To Log Into"); //input for password
+        boolean check = LgHand.LogInCheck(Username, Password); //assigns return value of LogInCheck to Check
+        boolean adminCheck = LgHand.AdminAuth; //assigns value of AdminAuth to admin Check
+        if (Username.equals("") || Password.equals("")) { //presence check for Username and Password
             JOptionPane.showMessageDialog(rootPane, "Username / Password cannot be left blank");
-        } else if (check && adminCheck) {
+        } else if (check && adminCheck) { //checks if combination of check and adminCheck is true
             JOptionPane.showMessageDialog(rootPane, "Swapped to Admin account: " + Username);
-        } else if (check) {
+        } else if (check) { //checks if check is true, i.e user is not admin but their credentials are true
             this.setVisible(false);
-            StudentGUI sGUI = new StudentGUI();
-            sGUI.setVisible(true);
+            StudentGUI sGUI = new StudentGUI(); //instance variable for Student GUI
+            sGUI.setVisible(true); //swaps to Student GUI as user is not admin
             JOptionPane.showMessageDialog(rootPane, "Swapped to Student account: " + Username);
 
-        } else if (!check) {
+        } else if (!check) { //notifies user that their combination is incorrect
             JOptionPane.showMessageDialog(rootPane, "Incorrect Username / Password");
-        } else if (Username.equals("") || Password.equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Username / Password cannot be left blank");
         }
     }
 
-    public void timeCheck() {
-        Timer checkTime = new Timer();
+    public void timeCheck() { //externally sourced from Grade 12 Learner Julian Scholtz
+        Timer checkTime = new Timer(); //instance variable for Javas Timer class
         checkTime.schedule(new TimerTask() {
             @Override
             public void run() {
                 LocalTime myTime = LocalTime.now();
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
                 String formattedTime = myTime.format(format);
-                txtClock.setText(formattedTime);
+                txtClock.setText(formattedTime); //sets text of the jLabel in realtime
             }
 
         }, 0, 1000);
     }
 
-    public void dateCheck() {
+    public void dateCheck() { //sets the txtCalendar component to todays date 
         String date = String.valueOf(java.time.LocalDate.now());
         txtCalendar.setText(date);
     }
 
-    public void openAttendList() {
-        ArrayHandler arrH = new ArrayHandler();
-        Attend_List attendList = new Attend_List();
-        arrH.setDates(txtCalendar.getText());
-        attendList.setGrade_And_Date_Labels(txtCalendar.getText());
-        attendList.addRowToJTable();
-        attendList.setVisible(true);
+    public void openAttendList() { //method opens attendance GUI and runs necessary methods to populate it
+        ArrayHandler arrH = new ArrayHandler(); //instance variable for ArrayHandler
+        Attend_List attendList = new Attend_List(); //instance variable for Attend_List
+        arrH.setDates(txtCalendar.getText()); //passes the arguments of txtCalendar i.e the current date
+        attendList.setGrade_And_Date_Labels(txtCalendar.getText()); //DEPRACATED CODE, NOT REMOVING AS IT MIGHT CAUSE SUBSEQUENT ERRORS
+        attendList.addRowToJTable(); //invokes the mode that populates the jTable
+        attendList.setVisible(true); //sets the frame as visible
     }
 
-    public void openPastAttendList() {
+    public void openPastAttendList() { //method sets the Past Attendance class visible
         OldAttend oldAttend = new OldAttend();
         oldAttend.setVisible(true);
     }
 
-    public void swapView() {
+    public void swapView() {  //Method swaps between the admin and student GUIs
+
         StudentGUI sGUI = new StudentGUI();
         this.setVisible(false);
         sGUI.setVisible(true);
         JOptionPane.showMessageDialog(null, "Moved From Admin view to student view.");
     }
 
-    public void myInfo() {
+    public void myInfo() { //method displays the info of the current user
         PublicInfo pInfo = new PublicInfo();
         pInfo.setVisible(true);
     }
 
-    public void createEvent() {
-
-        boolean valid = true;
-        Event_Date_Selection Eds = new Event_Date_Selection();
-        ArrayHandler arrH = new ArrayHandler();
-        arrH.populateEvents();
+    public void createEvent() { //method retrieves input from the user to create a new calendar event
+        boolean valid = true; //bool valid is set to true by default
+        Event_Date_Selection Eds = new Event_Date_Selection(); //instance variable of event_date_selection
+        ArrayHandler arrH = new ArrayHandler(); //instance variable of the ArrayHandler class
+        arrH.populateEvents(); //populates the user array
         System.out.println("Count " + arrH.eventCount);
-        if (jTextField2.getText().length() < 5 || jTextField2.getText().length() > 50) {
+        if (jTextField2.getText().length() < 5 || jTextField2.getText().length() > 50) { //length / presence / range check for event title
             jEventTitle.setText("Title out of range < 5 or > 50");
             valid = false;
-        } else if (jTextField2.getText().length() > 200) {
-            jEventTitle.setText("Title out of range > 200");
-            valid = false;
-        } else if(Eds.selectedEventDate == null){
+        } else if (Eds.selectedEventDate == null) { //notifies user that a date needs to be selected for the event their creating 
             JOptionPane.showMessageDialog(null, "-------ERROR-------\n Please select a date");
             valid = false;
-        } 
-        else if (valid) {
+        } else if (valid) { //method sets fields back to "" if the event is created
             jEventTitle.setText("");
             jEventTitle.setText("");
-            arrH.createNewEvent(arrH.eventCount + 1, arrH.cUser.getUserID(), Eds.selectedEventDate, jTextField2.getText(), jTextArea1.getText(), jRadioButton1.isSelected());
+            arrH.createNewEvent(arrH.eventCount + 1, arrH.cUser.getUserID(), Eds.selectedEventDate, jTextField2.getText(), jTextArea1.getText(), jRadioButton1.isSelected()); //passes arguments to the ArrayHandler class's createNewEvent method
         }
 
     }
 
-    public void selectDateForEvent() {
+    public void selectDateForEvent() { //opens the date selector frame
         Event_Date_Selection EventDS = new Event_Date_Selection();
         EventDS.setVisible(true);
     }
 
-    public void displayCurrentAdmins() {
+    public void displayCurrentAdmins() { //displays current admins
         ArrayHandler arrH = new ArrayHandler();
-        JOptionPane.showMessageDialog(null, "ALL ADMIN USERS: \n" + arrH.currentAdmins());
+        JOptionPane.showMessageDialog(null, "ALL ADMIN USERS: \n" + arrH.currentAdmins()); //fetches the current admins from the data structure in the ArrayHandler class
     }
 
-    public void displayCreateNewUser() {
+    public void displayCreateNewUser() { //method sets the form to create a new user as visible
         createNewUser cnU = new createNewUser();
         cnU.setVisible(true);
 
     }
 
-    public void displayAllUsersForDeletion() {
+    public void displayAllUsersForDeletion() { //method sets the form to delete a user as visible
         Delete_List dList = new Delete_List();
         dList.setVisible(true);
 
     }
-    
-    public void viewEvents(){
-        
-        ViewEventsGUI  veGUI = new ViewEventsGUI();
+
+    public void viewEvents() { //method set the form to view events as visible
+        ViewEventsGUI veGUI = new ViewEventsGUI();
         veGUI.setVisible(true);
     }
-    public void helpFunctions(int choice){
-        Help help = new Help();
-        switch(choice){
+
+    public void helpFunctions(int choice) { //switch statement corresponding to the help menu component
+        Help help = new Help(); //instance variable for help
+        switch (choice) {
             case 0:
-                help.helpFunction("Attendance.txt");
+                help.helpFunction("Attendance.txt"); //every case passes a string argument to the helpFunction()
                 break;
             case 1:
                 help.helpFunction("Events.txt");
@@ -178,12 +172,8 @@ public class AdminGUI extends javax.swing.JFrame {
                 help.helpFunction("DeleteUser.txt");
                 break;
             default:
-                JOptionPane.showMessageDialog(rootPane, "ERROR IN SWITCH");
-            
-            
-            
-            
-            
+                JOptionPane.showMessageDialog(rootPane, "ERROR IN SWITCH STATEMENT");
+
         }
     }
 

@@ -6,14 +6,15 @@
 package GUI;
 
 import CODE.ForgotPassword;
+import CODE.ArrayHandler;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class ForgotPasswordGUI extends javax.swing.JFrame {
 
-    ForgotPassword forgotPassword = new ForgotPassword();
+    ForgotPassword forgotPassword = new ForgotPassword(); //Reference variable for the forgotPassword class in .CODE
 
     /**
      * Creates new form ForgotPasswordGUI
@@ -24,31 +25,38 @@ public class ForgotPasswordGUI extends javax.swing.JFrame {
     }
 
     public void resetPass() {
+        //retrieves data from user
         int userID = (int) jSpinner1.getValue();
         String FName = jTextField1.getText();
         String LName = jTextField2.getText();
         String MothersMaiden = jTextField3.getText();
         if ((MothersMaiden.length() > 0 && LName.length() > 0 && FName.length() > 0)) {
+            //presence check for all user data
             String stringUserID = String.valueOf(userID);
             forgotPassword.ForgotPassword(stringUserID, FName, LName, MothersMaiden);
-            this.setVisible(forgotPassword.view);
+            // System.exit(0) is executed as the userArray in the ArrayHandler class is STATIC and cannot be updated
+
         } else if (userID < 1 || userID > 999) {
             spinnerError.setText("Your UserID Cannot < 0");
+            //length / range check for userID
         } else {
             spinnerError.setText("Valid...");
         }
         if (FName.length() <= 0) {
             spinnerError2.setText("cannot be <= 0 characters");
+            //length check for First Name
         } else {
             spinnerError2.setText("Valid...");
         }
         if (LName.length() <= 0) {
             spinnerError1.setText("cannot be <= 0 characters");
+            //length check for Last Name
         } else {
             spinnerError1.setText("Valid...");
         }
         if (MothersMaiden.length() <= 0) {
             spinnerError3.setText("cannot be <= 0 characters");
+            //length check for Mothers Maiden Name (Security Question)
         } else {
             spinnerError3.setText("Valid...");
         }

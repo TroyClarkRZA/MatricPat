@@ -9,7 +9,6 @@ import CODE.Attendance;
 import CODE.Users;
 import CODE.ArrayHandler;
 import CODE.StorageManager;
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +19,7 @@ import java.util.logging.Level;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Attend_List extends javax.swing.JFrame {
 
@@ -33,9 +32,8 @@ public class Attend_List extends javax.swing.JFrame {
     Object rowData[] = new Object[4];
     DefaultTableModel model;
 
-    /**
-     * Creates new form Grade
-     */
+   
+    //Constructor calls methods to set up the appropriate window
     public Attend_List() {
         initComponents();
         attendLogic();
@@ -48,25 +46,31 @@ public class Attend_List extends javax.swing.JFrame {
             Logger.getLogger(ArrayHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //method populates attend array from ArrayHandler class
     public void attendLogic() {
         arrH.populateAttend();
     }
-
+    //method returns the Date that is passed to it from other classes
     public int getDateData(int Date) {
         return Date;
     }
-
+    
+    //method adds a row to the JTable
     public void addRowToJTable() {
+        //assigns model value
         model = (DefaultTableModel) jTable2.getModel();
-
+        
+        //loops over the userArr until there are no objects left
         for (int i = 0; i < arrH.attendCount; i++) {
             System.out.println("i is " + i);
             try {
+                //assigns data to the appropriate rows using getters from the User class
                 rowData[0] = arrH.userArr[i].getUserID();
                 rowData[1] = arrH.userArr[i].getFName();
                 rowData[2] = arrH.userArr[i].getLName();
+                //this is set to default by default
                 rowData[3] = false;
+                //calls the method to asdd the row data
                 model.addRow(rowData);
 
             } catch (NullPointerException ex) {
@@ -75,13 +79,14 @@ public class Attend_List extends javax.swing.JFrame {
 
         }
     }
-
-    public void setGrade_And_Date_Labels(String Date) {
+    //sets the date of a jLabel to the current date
+    public void setGrade_And_Date_Labels(String Date) { 
         txtDate.setText(Date);
         storedDate = Date;
     }
-
+    //method commitsChanges from the jTable to the database
     public void commitChanges() throws SQLException {
+        //instance variable for the adminGUI
         AdminGUI agui = new AdminGUI();
 
         for (int i = 0; i < arrH.attendCount; i++) {
@@ -186,7 +191,7 @@ public class Attend_List extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//buttons only call methods
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             commitChanges();

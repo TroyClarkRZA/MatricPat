@@ -7,7 +7,7 @@ package CODE;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Events {
 
@@ -15,9 +15,11 @@ public class Events {
     private boolean Event_Priority;
     private int UserID_FK, EventID;
 
+    //Default constructor for Events
     public Events() {
     }
 
+    //getters for Event class
     public int getEventID() {
         return EventID;
     }
@@ -42,6 +44,7 @@ public class Events {
         return Event_Priority;
     }
 
+    //setters for Event class
     public void setEvent_Title(String Event_Title) {
         this.Event_Title = Event_Title;
     }
@@ -66,6 +69,7 @@ public class Events {
         this.EventID = EventID;
     }
 
+    //toString for Event class
     @Override
     public String toString() {
         return "Events{" + "Event_ Title=" + Event_Title + ", Event_Details=" + Event_Details + ", Event_Date_Time=" + Event_Date_Time + ", Event_Priority=" + Event_Priority + ", UserID_FK=" + UserID_FK + '}';

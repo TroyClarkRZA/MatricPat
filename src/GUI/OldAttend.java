@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class OldAttend extends javax.swing.JFrame {
 
@@ -24,7 +24,7 @@ public class OldAttend extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    //Retrieves the data from the currently selected Date component
     public void viewAttend() {
         ArrayHandler arrH = new ArrayHandler();
         int Year = convertYear(jCalendar1.getDate().getYear()); //STILL INT
@@ -38,7 +38,7 @@ public class OldAttend extends javax.swing.JFrame {
         jDisplay.setText(arrH.getAttend(actualDate));
 
     }
-
+    //these methods convert the int formats to Strings as the default date format is for example the year 2000 = 100
     public int convertYear(int Year) { //Converts year from jCal format to new format
         if (Year >= 100) {
             Year = Year - 100;

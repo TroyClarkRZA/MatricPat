@@ -10,7 +10,7 @@ import javax.swing.*;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class DiaryPanel extends javax.swing.JFrame {
 
@@ -29,13 +29,14 @@ public class DiaryPanel extends javax.swing.JFrame {
         arrH.populateDiary();
 
     }
-
+    //method creates entry
     public void createEntry() {
 
         ArrayHandler arrH = new ArrayHandler();
         arrH.populateDiary();
         System.out.println(arrH.entryCount);
         boolean valid = true;
+        //validates data
         if (jTextField1.getText().length() < 5 && jTextArea1.getText().length() < 10) {
             JOptionPane.showMessageDialog(null, "Title Cannot be less than 5 characters \n Entry Cannot be less than 10 characters");
             valid = false;
@@ -46,12 +47,13 @@ public class DiaryPanel extends javax.swing.JFrame {
         } else if (jTextArea1.getText().length() < 10) {
             JOptionPane.showMessageDialog(null, "Entry Cannot be less than 10 characters");
             valid = false;
+           //if valid is true then the entry is created
         } else if (valid == true) {
             arrH.createNewEntry(arrH.cUser.getUserID(), jTextField1.getText(), jTextArea1.getText(), arrH.entryCount + 1);
         }
 
     }
-
+    //displays all entries for the specific user who is logged in
     public void viewEntries() {
         Diary_List dList = new Diary_List();
         dList.setVisible(true);

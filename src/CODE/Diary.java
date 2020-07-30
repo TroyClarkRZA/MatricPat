@@ -7,16 +7,18 @@ package CODE;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Diary {
 
     private int UserID_FK, EntryNumber;
     private String DTEntry, Entry;
-
+    
+    //defualt constructor for Diary class
     public Diary() {
     }
-
+    
+    //getters for Diary class
     public int getUserID_FK() {
         return UserID_FK;
     }
@@ -32,7 +34,8 @@ public class Diary {
     public int getEntryNumber() {
         return EntryNumber;
     }
-
+    
+    //setters for Diary class
     public void setUserID_FK(int UserID_FK) {
         this.UserID_FK = UserID_FK;
     }
@@ -48,7 +51,8 @@ public class Diary {
     public void setEntryNumber(int EntryNumber) {
         this.EntryNumber = EntryNumber;
     }
-
+    
+    //toString for the Diary Object
     @Override
     public String toString() {
         return "UserID_FK=" + UserID_FK + ", DTEntry=" + DTEntry + ", Entry=" + Entry + ", EntryNumber=" + EntryNumber;

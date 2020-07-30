@@ -7,7 +7,7 @@ package CODE;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class Users {
 

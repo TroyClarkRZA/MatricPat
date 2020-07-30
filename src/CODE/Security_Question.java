@@ -7,15 +7,22 @@ package CODE;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
+ */
+/*
+NOTE:
+
+THIS CLASS IS USED FOR THE SECURITY QUESTION SECTION OF THE FORGOT PASSWORD FUNCTION
  */
 public class Security_Question {
 
     private String FName, LastName, MothersMaiden;
 
+    //Default constructor for class
     public Security_Question() {
     }
 
+    //Getters for class
     public String getFName() {
         return FName;
     }
@@ -36,6 +43,7 @@ public class Security_Question {
         return MothersMaiden;
     }
 
+    //setters for class
     public void setMothersMaiden(String MothersMaiden) {
         this.MothersMaiden = MothersMaiden;
     }

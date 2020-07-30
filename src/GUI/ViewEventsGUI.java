@@ -8,7 +8,7 @@ package GUI;
 import CODE.ArrayHandler;
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class ViewEventsGUI extends javax.swing.JFrame {
 
@@ -20,6 +20,7 @@ public class ViewEventsGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDisplay();
     }
+    //retrieves all eventsfrom eventArr
     public void setDisplay(){
         ArrayHandler arrH = new ArrayHandler();
         arrH.viewEvents();

@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
 public class createNewUser extends javax.swing.JFrame {
 
@@ -27,9 +27,9 @@ public class createNewUser extends javax.swing.JFrame {
     public void setInfo() {
         ArrayHandler arrH = new ArrayHandler();
         arrH.populateUsers();
-        jUserID.setText(String.valueOf(arrH.userCount + 1));
+        jUserID.setText(String.valueOf(arrH.userCount));
     }
-    
+    //method creates new user
     public void createUser_From_Fields() {
         boolean valid = true;
         jUserError1.setText("");
@@ -38,7 +38,7 @@ public class createNewUser extends javax.swing.JFrame {
         jLNameError.setText("");
         jMothersMError.setText("");
         jCalError.setText("");
-        
+        //validates data
         if (jUsername.getText().length() < 5 || jUsername.getText().length() > 30) {
             jUserError1.setText("Username > 30 or < 5");
             valid = false;
@@ -58,12 +58,13 @@ public class createNewUser extends javax.swing.JFrame {
             jCalError.setText("Date Out Of Range < 1920 or > 2010");
             valid = false;
         } else if (valid == true) {
-            jUserError1.setText("Username > 30 or < 5");
-            jPassError.setText("Password > 30 or < 10");
-            jFNameError.setText("First Name = 0 or > 30");
+            //sets all error messages to ""
+            jUserError1.setText("");
+            jPassError.setText("");
+            jFNameError.setText("");
             jLNameError.setText("");
-            jMothersMError.setText("Mothers Maiden Name = 0 or > 30");
-            jCalError.setText("Date Out Of Range < 1920 or > 2010");
+            jMothersMError.setText("");
+            jCalError.setText("");
             ArrayHandler arrH = new ArrayHandler();
             arrH.populateUsers();
             System.out.println("uCount " + arrH.userCount);
@@ -76,7 +77,7 @@ public class createNewUser extends javax.swing.JFrame {
             String sMonth = oAtnd.convertMonthToString(month);
             String sDay = oAtnd.convertDayToString(day);
             String actualDate = String.valueOf(sYear + "-" + sMonth + "-" + sDay);
-            
+            //creates new user from the ArrayHandler class method createNewUser();
             arrH.createNewUser(arrH.userCount , jFName.getText(), jLName.getText(), jUsername.getText(), jPassword.getText(), actualDate, jAdminButt.isSelected(), jMothersM.getText());
             
             this.setVisible(false);

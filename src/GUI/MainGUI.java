@@ -5,28 +5,26 @@
  */
 package GUI;
 
-import CODE.Backend;
-import CODE.ArrayHandler;
-import CODE.Help;
+import CODE.*;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author yolod
+ * @author Troy Clark
  */
-public class Main extends javax.swing.JFrame {
+public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form LogIn
      */
-    public Main() {
+    public MainGUI() {
         initComponents();
-        loadUses();
+        loadUsers(); //Calls loadUsers to be used by LogInEvent
         setLocationRelativeTo(null);
 
     }
 
-    public void loadUses() {
+    public void loadUsers() {
         ArrayHandler arrH = new ArrayHandler();
         arrH.populateUsers();
     }
@@ -38,23 +36,35 @@ public class Main extends javax.swing.JFrame {
             if (txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "One Or More Required Fields Left Blank");
                 checkIncorrect = false;
+                //presence check for username and password
             }
 
             boolean check = LogInH.LogInCheck(txtUsername.getText(), txtPassword.getText());
-            boolean adminCheck = LogInH.AdminAuth;
+            /*assigns the value of the LogInCheck Method to check bool
+              true if the details are correct to log in
+              false if the details are incorrect or invalid
+             */
+            boolean adminCheck = LogInH.AdminAuth; //assigns value of AdminAuth to adminCheck true if admin, false if not
             if (check && adminCheck) {
+                //logs user in if the details are correct
+                //sets this.frame as invisible
+                //sets ADMIN GUI frame visible
                 System.out.println("Logged In As Admin");
                 this.setVisible(false);
                 AdminGUI aGUI = new AdminGUI();
                 aGUI.setVisible(true);
 
             } else if (check) {
+                //logs user in if the details are correct
+                //sets this.frame as invisible
+                //sets STUDENT GUI frame visible
                 System.out.println("Log In As User");
                 this.setVisible(false);
                 StudentGUI sGUI = new StudentGUI();
                 sGUI.setVisible(true);
 
             } else if (!check && !adminCheck && checkIncorrect) {
+                //notifies user that their credential combination is not correct
                 JOptionPane.showMessageDialog(rootPane, "Incorrect Username / Password");
             }
 
@@ -65,11 +75,13 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void showForgotPassword() {
+        //sets the ForgotPasswordGUI visible
         ForgotPasswordGUI forgotPasswordGUI = new ForgotPasswordGUI();
         forgotPasswordGUI.setVisible(true);
     }
 
     private void localHelp() {
+        //passes argument "LogIn.txt" to helpFunction
         Help help = new Help();
         help.helpFunction("LogIn.txt");
     }
@@ -83,6 +95,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,6 +105,17 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -148,9 +172,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(3, 3, 3)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(4, 4, 4)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(jButton2)
@@ -207,21 +231,23 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new MainGUI().setVisible(true);
             }
         });
     }
@@ -230,6 +256,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
